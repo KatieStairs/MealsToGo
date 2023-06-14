@@ -3,7 +3,7 @@ import React from "react";
 import { StatusBar, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { RestaurantInfo } from "./restaurant-info.component";
+import { RestaurantInfoCard } from "./restaurant-info-card.component";
 
 export const RestaurantsScreen = () => {
   // eslint-disable-next-line prettier/prettier, quotes
@@ -21,7 +21,7 @@ export const RestaurantsScreen = () => {
         />
       </View>
       <View style={styles.list}>
-        <RestaurantInfo />
+        <RestaurantInfoCard />
       </View>
     </SafeAreaView>
   );
