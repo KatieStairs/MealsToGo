@@ -3,6 +3,7 @@ import React from "react";
 import { StatusBar, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native";
 import { Searchbar } from "react-native-paper";
+import { RestaurantInfo } from "./restaurant-info.component";
 
 export const RestaurantsScreen = () => {
   // eslint-disable-next-line prettier/prettier, quotes
@@ -20,7 +21,7 @@ export const RestaurantsScreen = () => {
         />
       </View>
       <View style={styles.list}>
-        <Text>list</Text>
+        <RestaurantInfo />
       </View>
     </SafeAreaView>
   );
@@ -37,7 +38,6 @@ const styles = StyleSheet.create({
   },
   search: {
     padding: 16,
-    backgroundColor: "green",
   },
   list: {
     flex: 1,
