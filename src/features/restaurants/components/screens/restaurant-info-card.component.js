@@ -1,11 +1,14 @@
-import * as React from "react";
+import React from "react";
 import styled from "styled-components/native";
-// import { StyleSheet } from "react-native";
+import { Text, Image, View } from "react-native";
 import { Card } from "react-native-paper";
-import { SvgXml } from "react-native-svg";
-import star from "../../../../../assets/star";
+import { Svg, SvgXml } from "react-native-svg";
 
-const RestaurantCardAddress = styled.Text`
+import { Spacer } from "../../../../components/spacer/spacer.component";
+import star from "../../../../../assets/star";
+import open from "../../../../../assets/open";
+
+const RestaurantCardAddress = styled(Text)`
   font-family: ${(props) => props.theme.fonts.body};
   font-size: ${(props) => props.theme.fontSizes.caption};
 `;
@@ -14,8 +17,21 @@ const Info = styled.View`
   padding: ${(props) => props.theme.space[3]};
 `;
 
-const Row = styled.View`
+const Rating = styled.View`
   flex-direction: row;
+  padding-top: ${(props) => props.theme.space[2]};
+  padding-bottom: ${(props) => props.theme.space[2]};
+`;
+
+const Section = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+const SectionEnd = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
 `;
 
 const RestaurantCard = styled(Card)`
@@ -24,10 +40,10 @@ const RestaurantCard = styled(Card)`
 
 const RestaurantCardCover = styled(Card.Cover)`
   background-color: ${(props) => props.theme.colors.bg.primary};
-  padding: ${(props) => props.theme.sizes[1]};
+  padding: ${(props) => props.theme.space[3]};
 `;
 
-const RestaurantCardTitle = styled.Text`
+const RestaurantCardTitle = styled(Text)`
   font-family: ${(props) => props.theme.fonts.heading};
   font-size: ${(props) => props.theme.fontSizes.body};
   color: ${(props) => props.theme.colors.ui.primary};
@@ -36,12 +52,13 @@ const RestaurantCardTitle = styled.Text`
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some Restaurant",
+    id = 1,
     icon,
     photos = [
       "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
     ],
     address = "100 some random street",
-    isOpenNow = true,
+    isOpenNow = false,
     rating = 4,
     isClosedTemporarily,
   } = restaurant;
@@ -53,11 +70,26 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <RestaurantCardTitle>{name}</RestaurantCardTitle>
-        <Row>
-          {ratingArray.map(() => (
-            <SvgXml xml={star} width={20} height={20} />
-          ))}
-        </Row>
+        <Section>
+          <Rating>
+            {ratingArray.map(() => (
+              <SvgXml xml={star} width={20} height={20} key={name} />
+            ))}
+          </Rating>
+          <SectionEnd>
+            {isClosedTemporarily && (
+              <Text variant="label" style={{ color: "red" }} key={name}>
+                CLOSED TEMPORARILY
+              </Text>
+            )}
+            <Spacer position="left" size="large">
+              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+            </Spacer>
+            <Spacer position="left" size="large">
+              <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+            </Spacer>
+          </SectionEnd>
+        </Section>
         <RestaurantCardAddress>{address}</RestaurantCardAddress>
       </Info>
     </RestaurantCard>
