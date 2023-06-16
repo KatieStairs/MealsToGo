@@ -2,9 +2,10 @@ import React from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
-import { RestaurantsScreen } from "./src/features/restaurants/components/screens/restaurants.screen";
+import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
 // eslint-disable-next-line prettier/prettier
 import { useFonts as useOswald, Oswald_400Regular } from "@expo-google-fonts/oswald";
+// eslint-disable-next-line prettier/prettier
 import { useFonts as useLato, Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato";
 
 export default function App() {
